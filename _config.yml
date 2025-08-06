@@ -1,3 +1,85 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+
+# Site settings
+title: Muhamed Javid Hussain - Technical Writer Portfolio
+email: javidwriter@gmail.com
+description: >-
+  Senior technical writer specializing in clear, user-friendly documentation.
+  9 years of experience in transforming complex technical concepts into 
+  accessible content that helps users achieve their goals.
+
+baseurl: "/Tech-writer-portfolio" # the subpath of your site, e.g. /blog
+url: "https://javeed-writer.github.io" # the base hostname & protocol for your site
+
+twitter_username: # Add if you have Twitter
+github_username: Javeed-Writer
+linkedin_username: muhamed-javid
+
+# Build settings
 theme: minima
-baseurl: "" # leave blank unless using a subdirectory
-url: "https://Javeed-Writer.github.io"
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Collections for organizing content
+collections:
+  user_guides:
+    output: true
+    permalink: /:collection/:name/
+  developer_guides:
+    output: true
+    permalink: /:collection/:name/
+  knowledge_base:
+    output: true
+    permalink: /:collection/:name/
+
+# Navigation menu
+header_pages:
+  - about.md
+  - resume.md
+  - portfolio.md
+  - testimonials.md
+  - contact.md
+
+# Site author
+author:
+  name: Muhamed Javid Hussain
+  email: javidwriter@gmail.com
+
+# Minima theme customization
+minima:
+  skin: auto
+  social_links:
+    github: Javeed-Writer
+    linkedin: muhamed-javid
+    email: javidwriter@gmail.com
+
+# Google Analytics (optional)
+# google_analytics: UA-NNNNNNNN-N
+
+# Search functionality
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
