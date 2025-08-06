@@ -3,27 +3,27 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title }}</title>
+    <title>{{ page.title }} - {{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
   </head>
   <body class="light-mode">
     <header class="site-header">
       <div class="container">
-        <h1>My Portfolio</h1>
+        <h1><a href="{{ '/' | relative_url }}">My Portfolio</a></h1>
         <nav>
           <ul class="main-nav">
-            <li><a href="{{ '/' | relative_url }}#landing">Home</a></li>
+            <li><a href="{{ '/' | relative_url }}">Home</a></li>
             <li class="dropdown">
-              <a href="#portfolio" class="dropbtn">Portfolio</a>
+              <a href="#" class="dropbtn">Portfolio</a>
               <div class="dropdown-content">
-                <a href="{{ '/user-guides/' | relative_url }}">User Guides</a>
+                <a href="{{ '/user_guides/' | relative_url }}">User Guides</a>
                 <a href="{{ '/developer_guides/' | relative_url }}">Developer Guides</a>
-                <a href="{{ '/knowledge_base/' | relative_url }}">Knowledge Bases</a>
+                <a href="{{ '/knowledge_base/' | relative_url }}">Knowledge Base</a>
               </div>
             </li>
-            <li><a href="{{ '/about/' | relative_url }}#about">About</a></li>
-            <li><a href="{{ '/testimonials/' | relative_url }}#testimonials">Testimonials</a></li>
-            <li><a href="{{ '/contact/' | relative_url }}#contact">Contact</a></li>
+            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+            <li><a href="{{ '/testimonials/' | relative_url }}">Testimonials</a></li>
+            <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
             <li>
               <button id="toggleTheme">Toggle Light/Dark</button>
             </li>
@@ -34,30 +34,6 @@
         </nav>
       </div>
     </header>
-      <script>
-  // Drop-down support for click/tap
-  document.querySelectorAll('.dropdown > .dropbtn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      // Toggle visibility of the dropdown content
-      let content = this.nextElementSibling;
-      if(content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  });
-
-  // Optional: Close dropdown if clicking outside
-  window.addEventListener('click', function(e) {
-    document.querySelectorAll('.dropdown-content').forEach(function(menu) {
-      if (!menu.parentElement.contains(e.target)) {
-        menu.style.display = "none";
-      }
-    });
-  });
-</script>
     <main>
       {{ content }}
     </main>
@@ -67,14 +43,48 @@
       </div>
     </footer>
     <script>
+      // Toggle theme
       const toggleThemeBtn = document.getElementById('toggleTheme');
-      toggleThemeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        document.body.classList.toggle('light-mode');
-      });
+      if (toggleThemeBtn) {
+        toggleThemeBtn.addEventListener('click', () => {
+          document.body.classList.toggle('dark-mode');
+          document.body.classList.toggle('light-mode');
+        });
+      }
+      // Search mock
       const searchBtn = document.getElementById('searchBtn');
-      searchBtn.addEventListener('click', () => {
-        alert('Search functionality coming soon!');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          alert('Search functionality coming soon!');
+        });
+      }
+      // Drop-down support for click/tap (mobile/desktop)
+      document.querySelectorAll('.dropdown > .dropbtn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          let content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+      });
+
+      // Close dropdown if clicking outside
+      window.addEventListener('click', function(e) {
+        document.querySelectorAll('.dropdown-content').forEach(function(menu) {
+          if (!menu.parentElement.contains(e.target)) {
+            menu.style.display = "none";
+          }
+        });
+      });
+
+      // Prevent close when clicking inside dropdown
+      document.querySelectorAll('.dropdown-content').forEach(function(menu) {
+        menu.addEventListener('click', function(e){
+          e.stopPropagation();
+        });
       });
     </script>
   </body>
