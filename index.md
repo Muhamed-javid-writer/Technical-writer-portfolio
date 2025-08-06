@@ -1,6 +1,6 @@
 ---
-layout: home
-title: Home
+layout: default
+title: Technical Writing Portfolio
 ---
 
 <div class="hero-section">
@@ -11,16 +11,6 @@ title: Home
       <p class="hero-description">
         Transforming complex technical concepts into clear, user-friendly documentation
       </p>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-number">9</span>
-          <span class="stat-label">Years Experience</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">100+</span>
-          <span class="stat-label">Documents Created</span>
-        </div>
-      </div>
     </div>
   </div>
 </div>
