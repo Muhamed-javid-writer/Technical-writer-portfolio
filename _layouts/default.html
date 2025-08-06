@@ -6,6 +6,30 @@
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
   </head>
+  <script>
+  // Drop-down support for click/tap
+  document.querySelectorAll('.dropdown > .dropbtn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Toggle visibility of the dropdown content
+      let content = this.nextElementSibling;
+      if(content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  });
+
+  // Optional: Close dropdown if clicking outside
+  window.addEventListener('click', function(e) {
+    document.querySelectorAll('.dropdown-content').forEach(function(menu) {
+      if (!menu.parentElement.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
+  });
+</script>
   <body class="light-mode">
     <header class="site-header">
       <div class="container">
