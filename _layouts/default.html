@@ -2,33 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>{{ page.title }} - {{ site.title }}</title>
+    <title>{{ page.title }} | {{ site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Vandara font from Google Fonts or local file -->
-    <link href="https://fonts.cdnfonts.com/css/vandara" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+    <link rel="icon" href="{{ '/assets/icon.png' | relative_url }}">
   </head>
   <body class="light-mode">
     <header class="site-header">
-      <div class="header-inner">
-        <img src="{{ '/assets/icon.png' | relative_url }}" alt="Site Icon" class="site-icon">
+      <div class="container header-flex">
+        <div class="site-title">
+          <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        </div>
         <nav>
-          <ul class="main-nav">
+          <ul class="nav-links">
             <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a></li>
-            <li><a href="{{ '/contact/' | relative_url }}" {% if page.url == '/contact/' %}class="active"{% endif %}>Contact</a></li>
             <li class="dropdown">
-              <a href="#" class="dropbtn {% if page.url contains '/user_guides/' or page.url contains '/developer_guides/' or page.url contains '/knowledge_base/' %}active{% endif %}">Portfolio</a>
-              <div class="dropdown-content">
-                <a href="{{ '/user_guides/' | relative_url }}">User Guides</a>
-                <a href="{{ '/developer_guides/' | relative_url }}">Developer Guides</a>
-                <a href="{{ '/knowledge_base/' | relative_url }}">Knowledge Base</a>
-              </div>
+              <a href="#" class="dropbtn {% if page.url contains '/user_guides/' or page.url contains '/developer_guides/' or page.url contains '/knowledge_base/' or page.url == '/portfolio/' %}active{% endif %}">Portfolio</a>
+              <ul class="dropdown-content">
+                <li><a href="{{ '/portfolio/' | relative_url }}">Overview</a></li>
+                <li><a href="{{ '/user_guides/' | relative_url }}">User Guides</a></li>
+                <li><a href="{{ '/developer_guides/' | relative_url }}">Developer Guides</a></li>
+                <li><a href="{{ '/knowledge_base/' | relative_url }}">Knowledge Base</a></li>
+              </ul>
             </li>
+            <li><a href="{{ '/contact/' | relative_url }}" {% if page.url == '/contact/' %}class="active"{% endif %}>Contact</a></li>
             <li>
-              <button id="toggleTheme" title="Toggle light/dark">&#9788;</button>
-            </li>
-            <li>
-              <span class="search-icon">&#128269;</span>
+              <button id="toggleTheme" title="Toggle light/dark" aria-label="Toggle theme">
+                <span id="themeIcon" aria-hidden="true">&#9788;</span>
+              </button>
             </li>
           </ul>
         </nav>
@@ -38,26 +39,56 @@
       {{ content }}
     </main>
     <footer class="site-footer">
-      <nav>
-        <a href="{{ '/about/' | relative_url }}">About</a>
-        <a href="{{ '/contact/' | relative_url }}">Contact</a>
-        <a href="{{ '/user_guides/' | relative_url }}">Portfolio</a>
-      </nav>
+      <div class="footer-content">
+        <div>
+          &copy; {{ site.time | date: '%Y' }} {{ site.title }}
+        </div>
+        <div class="footer-icons">
+          <a href="https://github.com/{{ site.github_username }}" title="GitHub" target="_blank" rel="noopener">
+            <img src="{{ '/assets/github.svg' | relative_url }}" alt="GitHub icon">
+          </a>
+          <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn" target="_blank" rel="noopener">
+            <img src="{{ '/assets/linkedin.svg' | relative_url }}" alt="LinkedIn icon">
+          </a>
+          <a href="mailto:{{ site.email }}" title="Email">
+            <img src="{{ '/assets/gmail.svg' | relative_url }}" alt="Gmail icon">
+          </a>
+        </div>
+      </div>
     </footer>
     <script>
       // Theme toggle
-      document.getElementById('toggleTheme').addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-        document.body.classList.toggle('light-mode');
+      const toggleBtn = document.getElementById('toggleTheme');
+      const themeIcon = document.getElementById('themeIcon');
+      function setTheme(mode) {
+        if(mode === 'dark') {
+          document.body.classList.add('dark-mode');
+          document.body.classList.remove('light-mode');
+          themeIcon.textContent = '🌙';
+        } else {
+          document.body.classList.remove('dark-mode');
+          document.body.classList.add('light-mode');
+          themeIcon.textContent = '☀️';
+        }
+      }
+      toggleBtn.addEventListener('click', function() {
+        const isDark = document.body.classList.contains('dark-mode');
+        setTheme(isDark ? 'light' : 'dark');
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
       });
-      // Dropdown for Portfolio
+      (function(){
+        const stored = localStorage.getItem('theme');
+        if(stored) setTheme(stored);
+        else if(window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+      })();
+
+      // Portfolio dropdown
       document.querySelectorAll('.dropdown .dropbtn').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
           this.parentElement.classList.toggle('open');
         });
       });
-      // Close dropdown when clicking outside
       window.addEventListener('click', function(e) {
         document.querySelectorAll('.dropdown').forEach(function(drop) {
           if (!drop.contains(e.target)) drop.classList.remove('open');
