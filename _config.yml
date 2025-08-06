@@ -13,11 +13,10 @@ description: >-
   9 years of experience in transforming complex technical concepts into 
   accessible content that helps users achieve their goals.
 
-baseurl: "/Tech-writer-portfolio" # the subpath of your site, e.g. /blog
-url: "https://javeed-writer.github.io" # the base hostname & protocol for your site
+baseurl: baseurl: "/Technical-writer-portfolio" # the subpath of your site, e.g. /blog
+url: "https://muhamed-javid-writer.github.io" # the base hostname & protocol for your site
 
-twitter_username: # Add if you have Twitter
-github_username: Javeed-Writer
+github_username: Muhamed-javid-writer
 linkedin_username: muhamed-javid
 
 # Build settings
@@ -71,7 +70,7 @@ author:
 minima:
   skin: auto
   social_links:
-    github: Javeed-Writer
+    github: Muhamed-javid-writer
     linkedin: muhamed-javid
     email: javidwriter@gmail.com
 
