@@ -13,7 +13,7 @@ description: >-
   9 years of experience in transforming complex technical concepts into 
   accessible content that helps users achieve their goals.
 
-baseurl: baseurl: "/Technical-writer-portfolio" # the subpath of your site, e.g. /blog
+baseurl: "/Technical-writer-portfolio" # the subpath of your site, e.g. /blog
 url: "https://muhamed-javid-writer.github.io" # the base hostname & protocol for your site
 
 github_username: Muhamed-javid-writer
