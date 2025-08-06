@@ -1,11 +1,5 @@
 # Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
 
-# Site settings
 title: Muhamed Javid Hussain - Technical Writer Portfolio
 email: javidwriter@gmail.com
 description: >-
@@ -13,8 +7,8 @@ description: >-
   9 years of experience in transforming complex technical concepts into 
   accessible content that helps users achieve their goals.
 
-baseurl: "/Technical-writer-portfolio" # the subpath of your site, e.g. /blog
-url: "https://muhamed-javid-writer.github.io" # the base hostname & protocol for your site
+baseurl: "/Technical-writer-portfolio" # the subpath of your site, matches repo name!
+url: "https://muhamed-javid-writer.github.io" # your GitHub Pages base URL
 
 github_username: Muhamed-javid-writer
 linkedin_username: muhamed-javid
@@ -28,7 +22,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
-# Exclude from processing
 exclude:
   - .sass-cache/
   - .jekyll-cache/
@@ -61,12 +54,10 @@ header_pages:
   - testimonials.md
   - contact.md
 
-# Site author
 author:
   name: Muhamed Javid Hussain
   email: javidwriter@gmail.com
 
-# Minima theme customization
 minima:
   skin: auto
   social_links:
@@ -74,11 +65,5 @@ minima:
     linkedin: muhamed-javid
     email: javidwriter@gmail.com
 
-# Google Analytics (optional)
+# Uncomment and set if you use Google Analytics
 # google_analytics: UA-NNNNNNNN-N
-
-# Search functionality
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
